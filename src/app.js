@@ -1,5 +1,9 @@
-import {player} from './components/player';
+function startApp () {
+    var canvas = document.getElementById("app");
+    var ctx = canvas.getContext("2d");
 
-console.log(player);
+    canvas.height = 200;
+    canvas.width = 200;
+}
 
-
+window.onload = startApp;
