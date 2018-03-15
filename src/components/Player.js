@@ -1,4 +1,5 @@
-import {state, ctx} from './../globalState';
+import {state} from './../globalState';
+import {ctx} from './../helpers';
 
 export var Player = {
     render: function() {

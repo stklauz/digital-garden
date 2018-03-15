@@ -3,14 +3,11 @@ var canvasConfig = {
     height: 600
 };
 
-export var canvas = document.getElementById("app");
-export var ctx = canvas.getContext("2d");
-
-
 export var state = {
     canvas: {
         width: canvasConfig.width,
         height: canvasConfig.height,
+        keyDown: false,
         keys: {
             left: false,
             top: false,

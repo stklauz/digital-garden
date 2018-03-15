@@ -1,7 +1,20 @@
-import {state, ctx} from './../globalState';
+import {state} from './../globalState';
+import {ctx} from './../helpers';
 import {atlasList} from './../atlasList';
 
 export var Atlas = {
+
+    handlePlayerMovement(){
+        if (state.canvas.keys.left) {
+            state.atlas.xOffset++;
+        } else if (state.canvas.keys.top) {
+            state.atlas.yOffset--;
+        } else if (state.canvas.keys.right) {
+            state.atlas.xOffset--;
+        } else if (state.canvas.keys.bottom) {
+            state.atlas.yOffset++;
+        }
+    },
 
     renderRoad: function(row, column) {
         const size = state.atlas.size;
@@ -29,6 +42,7 @@ export var Atlas = {
 
 
     render: function() {
+        state.canvas.keyDown && this.handlePlayerMovement();
         var currentAtlas = atlasList[state.level.num];
 
         for (var i = 0; i < currentAtlas.length; i++) {
