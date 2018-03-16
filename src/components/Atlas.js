@@ -5,37 +5,27 @@ import {atlasList} from './../atlasList';
 export var Atlas = {
 
     handlePlayerMovement(){
+        let distance = 10;
+
         if (state.canvas.keys.left) {
-            state.atlas.xOffset++;
+            state.atlas.xOffset += distance;
         } else if (state.canvas.keys.top) {
-            state.atlas.yOffset--;
+            state.atlas.yOffset += distance;
         } else if (state.canvas.keys.right) {
-            state.atlas.xOffset--;
+            state.atlas.xOffset -= distance;
         } else if (state.canvas.keys.bottom) {
-            state.atlas.yOffset++;
+            state.atlas.yOffset -= distance;
         }
     },
 
-    renderRoad: function(row, column) {
+    renderTile: function(row, column, color) {
         const size = state.atlas.size;
         let x = size * column + state.atlas.xOffset;
-        let y = size * row + state.atlas.xOffset;
+        let y = size * row + state.atlas.yOffset;
         
         ctx.beginPath();
-        ctx.rect( x, y, x+size, y+size);
-        ctx.fillStyle = "white";        
-        ctx.fill();
-        ctx.closePath();
-    },
-
-    renderWeeds: function(row, column) {
-        const size = state.atlas.size;
-        let x = size * column + state.atlas.xOffset;
-        let y = size * row + state.atlas.xOffset;
-
-        ctx.beginPath();
-        ctx.rect( x, y, x+size, y+size);        
-        ctx.fillStyle = "#bcbcbc";
+        ctx.rect( x, y, x+size-state.atlas.xOffset, y+size-state.atlas.yOffset);
+        ctx.fillStyle = color;        
         ctx.fill();
         ctx.closePath();
     },
@@ -49,10 +39,10 @@ export var Atlas = {
             for (var tile = 0; tile < currentAtlas[i].length; tile++) {
                 switch (currentAtlas[i][tile]) {
                     case 0:
-                        this.renderRoad(i,tile);
+                        this.renderTile(i,tile, '#BCBCBC');
                         break;
                     case 1:
-                        this.renderWeeds(i, tile);
+                        this.renderTile(i, tile, '#FFF');
                         break;
                     default:
                         break;

@@ -11,20 +11,21 @@ export function keyUpHandler() {
     state.canvas.keys.bottom = false;     
 }
 
-export var KEY = {
-    onUp : function() {
-        state.canvas.keyDown = false;    
-        state.canvas.keys.left = false;
-        state.canvas.keys.top = false;
-        state.canvas.keys.right = false;   
-        state.canvas.keys.bottom = false;  
+export function keyDownHandler(e) {
+    console.log(e.keyCode);
+    state.canvas.keyDown = true;
+
+    if(typeof e.keyCode == "object") {
+        for(let key of e.keyCode) {
+            checkKeys(key);
+        }
+    } else {
+        checkKeys(e.keyCode);
     }
 }
 
-
-export function keyDownHandler(e) {
-    state.canvas.keyDown = true;
-    switch (e) {
+function checkKeys(key) {
+    switch (key) {
         case 37:
             state.canvas.keys.left = true;
             break;
@@ -39,5 +40,5 @@ export function keyDownHandler(e) {
             break; 
         default:
             break;
-    }   
+    }  
 }

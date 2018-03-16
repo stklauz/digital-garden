@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "webpack --watch",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server --output-public-path=/build/"
   },
   "author": "",
   "license": "ISC"

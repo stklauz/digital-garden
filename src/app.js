@@ -13,8 +13,12 @@ function startApp () {
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
 
-    setInterval(updateGame(), 1000/2);
+    renderGame();
 } 
+
+function renderGame(){
+    setTimeout(updateGame, 1000/21);
+}
 
 function updateGame() {
     // clear canvas
@@ -23,6 +27,8 @@ function updateGame() {
     // render objects
     Atlas.render();
     Player.render();
+    renderGame();
 }
+
 
 window.onload = startApp;
