@@ -9,11 +9,14 @@ export var Atlas = {
 
         if (state.canvas.keys.left) {
             state.atlas.xOffset += distance;
-        } else if (state.canvas.keys.top) {
+        }
+        if (state.canvas.keys.top) {
             state.atlas.yOffset += distance;
-        } else if (state.canvas.keys.right) {
+        }
+        if (state.canvas.keys.right) {
             state.atlas.xOffset -= distance;
-        } else if (state.canvas.keys.bottom) {
+        }
+        if (state.canvas.keys.bottom) {
             state.atlas.yOffset -= distance;
         }
     },

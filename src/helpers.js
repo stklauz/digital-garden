@@ -42,4 +42,6 @@ export function keyHandler(e) {
             }
         }
     }
+
+    console.log(e.keyCode, e.type, keyList, state.canvas.keys);
 }
