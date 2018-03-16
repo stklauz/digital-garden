@@ -3,42 +3,43 @@ import {state} from './globalState';
 export var canvas = document.getElementById("app");
 export var ctx = canvas.getContext("2d");
 
-export function keyUpHandler() {
-    state.canvas.keyDown = false;    
-    state.canvas.keys.left = false;
-    state.canvas.keys.top = false;
-    state.canvas.keys.right = false;   
-    state.canvas.keys.bottom = false;     
-}
-
-export function keyDownHandler(e) {
-    console.log(e.keyCode);
-    state.canvas.keyDown = true;
-
-    if(typeof e.keyCode == "object") {
-        for(let key of e.keyCode) {
-            checkKeys(key);
-        }
-    } else {
-        checkKeys(e.keyCode);
+var keyList = {
+    37: {
+        pressed: false,
+        name: "left"
+    },
+    38: {
+        pressed: false,
+        name: "top"
+    },
+    39: {
+        pressed: false,
+        name: "right"
+    },
+    40: {
+        pressed: false,
+        name: "bottom"
     }
-}
+};
 
-function checkKeys(key) {
-    switch (key) {
-        case 37:
-            state.canvas.keys.left = true;
-            break;
-        case 38:
-            state.canvas.keys.top = true;
-            break;
-        case 39:
-            state.canvas.keys.right = true;
-            break;
-        case 40:
-            state.canvas.keys.bottom = true;
-            break; 
-        default:
-            break;
-    }  
+export function keyHandler(e) {
+    if (!keyList[e.keyCode]) {return;};
+
+    keyList[e.keyCode].pressed = e.type == 'keydown';
+
+    var name = keyList[e.keyCode].name;
+    if (e.type == "keydown") {
+        state.canvas.keys[name] = true;
+        state.canvas.keyDown = true;
+    } else {
+        state.canvas.keys[name] = false;
+
+        let list = Object.keys(keyList);
+        for (let i of list) {
+            if (keyList[i].pressed) {
+                state.canvas.keyDown = true;
+                break;
+            }
+        }
+    }
 }

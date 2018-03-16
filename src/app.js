@@ -1,5 +1,5 @@
 import {state} from './globalState';
-import {canvas, ctx, keyDownHandler, keyUpHandler} from './helpers';
+import {canvas, ctx, keyHandler} from './helpers';
 import {Player} from './components/Player';
 import {Atlas} from './components/Atlas';
 
@@ -10,11 +10,11 @@ function startApp () {
     canvas.style.margin = "20px auto";
     canvas.style.display = "block";
     
-    document.addEventListener("keydown", keyDownHandler, false);
-    document.addEventListener("keyup", keyUpHandler, false);
+    document.addEventListener("keydown", keyHandler, false);
+    document.addEventListener("keyup", keyHandler, false);
 
     renderGame();
-} 
+}
 
 function renderGame(){
     setTimeout(updateGame, 1000/21);
