@@ -3,8 +3,10 @@ import {ctx} from './../helpers';
 
 export var Player = {
     render: function() {
+        let size = state.player.size;
+
         ctx.beginPath();
-        ctx.arc(state.player.x, state.player.y, state.player.size, 0, Math.PI*2);
+        ctx.rect( state.player.x, state.player.y, size, size);
         ctx.fillStyle = state.player.color;
         ctx.fill();
         ctx.closePath();

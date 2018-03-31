@@ -1,6 +1,6 @@
 var canvasConfig = {
-    width: 800,
-    height: 600
+    width: 640,
+    height: 640
 };
 
 export var state = {
@@ -19,14 +19,17 @@ export var state = {
         num: 0
     },
     player: {
-        x: canvasConfig.width / 2,
-        y: canvasConfig.height / 2,
-        size: 16,
+        x: (canvasConfig.width) / 2 - 48/2,
+        y: (canvasConfig.height) / 2 - 48/2,
+        walkingVelocity: 8,
+        currentXTile: false,
+        size: 48,
         color: '#2D9CDB'     
     },
     atlas: {
-        size: canvasConfig.width / 10,
-        xOffset: 0,
-        yOffset: 0
-    }
+        size: 64,
+        xOffset: -64,
+        yOffset: -384
+    },
+    debug: true
 };

@@ -37,11 +37,9 @@ export function keyHandler(e) {
         let list = Object.keys(keyList);
         for (let i of list) {
             if (keyList[i].pressed) {
-                state.canvas.keyDown = true;
-                break;
+                return state.canvas.keyDown = true;
             }
         }
+        return state.canvas.keyDown = false;
     }
-
-    console.log(e.keyCode, e.type, keyList, state.canvas.keys);
 }
